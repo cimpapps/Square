@@ -70,9 +70,6 @@ public class KeysInput extends JDialog {
 //					}
 //				
 //				}//end of for
-				switch(code){
-					case 
-				}
 				if (jtf == textFieldUp1){
 					setKeyUp1(code);
 					return;
