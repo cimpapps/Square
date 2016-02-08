@@ -295,12 +295,13 @@ public class Game extends JPanel implements Runnable, Serializable{
 		if (img!=null)
 			g.drawImage(img, 0, 0, null);
 		
-		drawPlayer(g, player1,player1.getColor());
+		player1.drawGameObject(g, player1.getColor());
+		
 		g.setColor(player1.getColor());
 		g.drawString( "PLAYER1: " + player1.getScore() , 5, 20);
 		
 		if(multiplayer){
-			drawPlayer(g, player2,player2.getColor());
+			player2.drawGameObject(g, player2.getColor());
 			g.setColor(player2.getColor());
 			g.drawString("PLAYER2: " + player2.getScore() , 110, 20);
 		}
@@ -311,43 +312,17 @@ public class Game extends JPanel implements Runnable, Serializable{
 			g.drawString("Press P to " + (start? "PAUSE" : "PLAY"), getWidth()/2-50, 20);
 			
 		for (int i = 0; i < enemy.length; i++) {
-			drawEnemy(g, enemy[i], enemy[i].getColor());
+			enemy[i].drawGameObject(g, enemy[i].getColor());
 		}
 		
 		
 	}//end of paintComponent()
 	
-	/**
-	 * Is drawing an enemy with color you want using a graphic object
-	 * @param g - the object that is used for drawing the enemy
-	 * @param enemy - use the coordinates from the enemy object
-	 * @param enemyColor - it is the color that will have the enemy
-	 */
-	public void drawEnemy(Graphics g, Enemy enemy, Color enemyColor) {
-		g.setColor(enemyColor);
-		g.fillRect(enemy.coordX, enemy.coordY , 
-				enemy.width, enemy.height);//drawing enemy
-	}//end of drawEnemy()
 	
-	/**
-	 * It is used to draw the player
-	 * @param Graphics g
-	 * @param Player player - the player we want to draw(using the coordinates from the player object)
-	 * @param Color playerColor - the color we want for the player's body
-	 * @param Color gunColor - the color we want for the enemy's body
-	 */
-	public void drawPlayer(Graphics g, Player player, Color playerColor) {
-		//draw player (a rectangular shape)
-		player.setColor(playerColor);
-		g.setColor(playerColor);
-		g.fillRect(player.getCoordX(), player.getCoordY(), player.getWidth(), player.getHeight());//drawing player
-
-		//draw the players gun
-		g.setColor(getRandomColor());
-		g.fillOval(player.getBulletX(), player.getBulletY(),
-				player.getWidth()*3/2, player.getHeight()/4);//drawing bullet
-		
-	}
+	
+	
+	
+	
 	
 	/**
 	 * Detects the collision between the player and the enemy.
@@ -356,7 +331,7 @@ public class Game extends JPanel implements Runnable, Serializable{
 	 * @param Enemy enemy
 	 * @param Player player
 	 */
-	public void detectCollision(Enemy enemy, Player player){
+	private static void detectCollision(Enemy enemy, Player player){
 		int score = player.getScore();
 		if ((player.getBulletX())+player.width> enemy.coordX && 
 				player.getBulletX() < (enemy.coordX+enemy.width) &&

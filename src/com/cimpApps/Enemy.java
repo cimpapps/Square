@@ -1,8 +1,9 @@
 package com.cimpApps;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
-public class Enemy extends GameObject {
+public class Enemy extends GameObject  implements Drawable{
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -51,5 +52,17 @@ public class Enemy extends GameObject {
 
 	@Override
 	public void setSpeedY(int y) {}
+
+	@Override
+	/**
+	 * Is drawing an enemy with color you want using a graphic object
+	 * @param g - the object that is used for drawing the enemy
+	 * @param enemyColor - it is the color that will have the enemy
+	 */
+	public void drawGameObject(Graphics g, Color objectColor) {
+		g.setColor(objectColor);
+		g.fillRect(this.coordX, this.coordY , 
+				this.width, this.height);//drawing enemy
+	}//end of drawEnemy()
 
 }//end of Enemy

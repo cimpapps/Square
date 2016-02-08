@@ -1,8 +1,9 @@
 package com.cimpApps;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
-public class Player extends GameObject{
+public class Player extends GameObject implements Drawable{
 	
 	private static final long serialVersionUID = 1L;
 	private static int numberOfInstances = 0;
@@ -174,6 +175,29 @@ public class Player extends GameObject{
 	}
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	
+	/**
+	 * It is used to draw the player
+	 * @param Graphics g
+	 * @param Player player - the player we want to draw(using the coordinates from the player object)
+	 * @param Color playerColor - the color we want for the player's body
+	 * @param Color gunColor - the color we want for the enemy's body
+	 */
+	@Override
+	public void drawGameObject(Graphics g, Color objectColor) {
+		//draw player (a rectangular shape)
+		
+				setColor(objectColor);
+				g.setColor(objectColor);
+				g.fillRect(this.getCoordX(), this.getCoordY(), this.getWidth(), this.getHeight());//drawing player
+
+				//draw the players gun
+				g.setColor(Game.getRandomColor());
+				g.fillOval(this.getBulletX(), this.getBulletY(),
+						this.getWidth()*3/2, this.getHeight()/4);//drawing bullet
+		
 	}
 	
 	
