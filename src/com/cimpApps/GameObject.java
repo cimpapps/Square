@@ -8,7 +8,7 @@ import java.io.Serializable;
  * This class is a blueprint for the objecs that will be drawn
  * on the game content (Player and Enemy)
  */
-public abstract class GameObject implements Serializable{
+public abstract class GameObject implements Serializable, Drawable{
 	private static final long serialVersionUID = 1L;
 	
 	protected int coordX;

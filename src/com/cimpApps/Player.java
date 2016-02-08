@@ -3,7 +3,7 @@ package com.cimpApps;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Player extends GameObject implements Drawable{
+public class Player extends GameObject{
 	
 	private static final long serialVersionUID = 1L;
 	private static int numberOfInstances = 0;

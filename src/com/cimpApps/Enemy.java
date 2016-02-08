@@ -3,7 +3,7 @@ package com.cimpApps;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Enemy extends GameObject  implements Drawable{
+public class Enemy extends GameObject{
 	
 	
 	private static final long serialVersionUID = 1L;
