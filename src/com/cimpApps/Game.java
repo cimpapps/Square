@@ -19,7 +19,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URL;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -71,7 +71,7 @@ public class Game extends JPanel implements Runnable, Serializable{
 	private boolean multiplayer;
 	private boolean start;
 
-	private final String imageLocationString = "com/cimpApps/starwars.jpg";
+	private final String imageLocationString = "/starwars.jpg";
 
 	public static void main(String[] a){
 		content = new Game();
@@ -107,9 +107,9 @@ public class Game extends JPanel implements Runnable, Serializable{
 					
 					for (int i = 0; i < enemy.length; i++) {
 						enemy[i].move();
-						this.detectCollision(enemy[i], player1);
+						Game.detectCollision(enemy[i], player1);
 						if(multiplayer)
-							this.detectCollision(enemy[i], player2);
+							Game.detectCollision(enemy[i], player2);
 					}
 					
 				}
@@ -146,18 +146,13 @@ public class Game extends JPanel implements Runnable, Serializable{
 	public void initComponents() {
 		try {
 			
-			 URL url = getClass().getClassLoader().getResource(imageLocationString);
+			 URL url = Game.class.getResource(imageLocationString);
 			 
-		   	 if (url != null){
-		   		 
-			 	 File imageFile = new File(url.getPath());
-			 	 
-			 	 img = ImageIO.read(imageFile);
-			 	 
-			 	 
+		   	 if (url != null){		   		
+			 	 img = new ImageIcon(url).getImage(); 
 			 }
 		   	 
-		} catch (IOException e2) {
+		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}finally {
